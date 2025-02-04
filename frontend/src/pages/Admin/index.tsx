@@ -8,7 +8,8 @@ import {
   ApiOutlined,
   ExclamationCircleFilled,
 } from "@ant-design/icons";
-import { Breadcrumb, Layout as AntLayout, Menu, theme, Modal } from "antd";
+import { Breadcrumb, Layout as AntLayout, Menu, theme, Modal, MenuProps } from "antd";
+import React from "react";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Sider } = AntLayout;
@@ -57,19 +58,19 @@ const items2 = [
     icon: <UserOutlined />,
   },
 ];
-const AdminLayout = () => {
+const AdminLayout: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const [selectkey, Setselectkey] = useState("home");
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!sessionStorage.getItem("token")) {
-      navigate("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!sessionStorage.getItem("token")) {
+  //     navigate("/login");
+  //   }
+  // }, []);
 
-  const onClick = ({ key }) => {
+  const onClick: MenuProps['onClick'] = ({key}) => {
     Setselectkey(key);
     switch (key) {
       case "home":
@@ -103,12 +104,12 @@ const AdminLayout = () => {
           alignItems: "center",
         }}
       >
-        <div className="demo-logo">OpenAPI</div>
+        <div className="demo-logo">月兔API</div>
         <Menu
           className="menu"
           //   theme="dark"
           mode="horizontal"
-          selectedKeys={selectkey}
+          selectedKeys={[selectkey]}
           // defaultSelectedKeys={["2"]}
           items={items1}
           style={{
@@ -127,7 +128,7 @@ const AdminLayout = () => {
         >
           <Menu
             mode="inline"
-            selectedKeys={selectkey}
+            selectedKeys={[selectkey]}
             // defaultOpenKeys={["sub1"]}
             style={{
               height: "100%",

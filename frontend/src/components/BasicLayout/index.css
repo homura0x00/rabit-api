@@ -1,0 +1,8 @@
+#BasicLayout .header {
+    margin-bottom: 16px;
+    background: white;
+}
+
+#BasicLayout .content{
+    background: linear-gradient(to right, #fefefe, #fff);
+}

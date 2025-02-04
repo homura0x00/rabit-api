@@ -1,6 +1,15 @@
 import React from "react";
-import { Space, Table, Tag } from "antd";
-const columns = [
+import { Space, Table, TableProps, Tag } from "antd";
+
+interface DataType {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+  tags: string[];
+}
+
+const columns: TableProps<DataType>['columns'] = [
   {
     title: "Name",
     dataIndex: "name",
@@ -71,5 +80,5 @@ const data = [
     tags: ["cool", "teacher"],
   },
 ];
-const App = () => <Table columns={columns} dataSource={data} />;
+const App: React.FC = () => <Table columns={columns} dataSource={data} />;
 export default App;

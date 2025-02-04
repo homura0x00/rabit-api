@@ -5,9 +5,9 @@ import Login from "../pages/Login/index.jsx";
 import Home from "../components/Home/index.jsx";
 import RoleList from "../pages/RoleList/index.jsx";
 import Layout from "../pages/Layout/index.jsx";
-import AdminLayout from "../pages/Admin/index.jsx";
-import AdminInterfaceInfo from "../pages/Admin/InterfaceInfo/index.jsx";
-import Welcome from "../pages/Index/index.jsx";
+import AdminLayout from "../pages/Admin/index.tsx";
+import AdminInterfaceInfo from "../pages/Admin/InterfaceInfo/index.tsx";
+import Welcome from "../pages/Index/index.tsx";
 
 const router = createBrowserRouter([
   {

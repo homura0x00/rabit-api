@@ -1,6 +1,7 @@
 import { Modal, Form, Input, Select } from "antd";
+import React  from 'react';
 const { TextArea } = Input;
-const CreateModal = (props) => {
+const CreateModal: React.FC = (props) => {
   // eslint-disable-next-line react/prop-types
   const { open, onCancel, onSubmit } = props;
   const [form] = Form.useForm();
