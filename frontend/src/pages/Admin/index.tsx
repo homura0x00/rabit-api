@@ -7,14 +7,17 @@ import {
   UserOutlined,
   ApiOutlined,
   ExclamationCircleFilled,
+  ExclamationCircleOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, Layout as AntLayout, Menu, theme, Modal, MenuProps } from "antd";
+import { Breadcrumb, Layout as AntLayout, Menu, theme, MenuProps, Modal } from "antd";
 import React from "react";
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 const { Header, Content, Sider } = AntLayout;
-const { confirm } = Modal;
-const items1 = [
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+const topItems: MenuItem[] = [
   {
     label: "settings",
     key: "SubMenu",
@@ -29,32 +32,32 @@ const items1 = [
   },
 ];
 
-const items2 = [
+const items2: MenuItem[] = [
   {
-    label: "Home",
-    key: "home",
+    label: 'Home',
+    key: '/admin',
     icon: <HomeOutlined />,
   },
   {
-    label: "API管理(Admin)",
-    key: "role",
+    label: '接口管理',
+    key: 'role',
     icon: <ApartmentOutlined />,
     children: [
       {
-        label: "API管理",
-        key: "api-admin",
+        label: '接口管理',
+        key: '/admin/interfaceinfo',
         icon: <ApiOutlined />,
       },
       {
-        label: "API发布",
-        key: "user-admin",
+        label: '接口分析',
+        key: '/admin/interface',
         icon: <ApiOutlined />,
       },
     ],
   },
   {
-    label: "api管理",
-    key: "api",
+    label: '用户管理',
+    key: '/admin/userinfo',
     icon: <UserOutlined />,
   },
 ];
@@ -62,46 +65,41 @@ const AdminLayout: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const [selectkey, Setselectkey] = useState("home");
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!sessionStorage.getItem("token")) {
-  //     navigate("/login");
-  //   }
-  // }, []);
+  const location = useLocation();
+  useEffect(() => {
+    // if (!sessionStorage.getItem("token")) {
+    //   navigate("/login");
+    // }
+  }, []);
+
+  const onSetting: MenuProps['onClick'] = ({key}) => {
+    if (key === 'exit') {
+      Modal.confirm({
+        title: '退出系统',
+        icon: <ExclamationCircleOutlined />,
+        content: '该操作不可逆,是否确认退出!',
+        okText: '确认',
+        cancelText: '取消',
+        onOk: () => (navigate('/login'))
+      });
+    }
+  }
+
 
   const onClick: MenuProps['onClick'] = ({key}) => {
-    Setselectkey(key);
-    switch (key) {
-      case "home":
-        navigate("/admin");
-        break;
-      case "api-admin":
-        navigate("/admin/interfaceinfo");
-        break;
-      case "exit":
-        confirm({
-          title: "系统消息",
-          icon: <ExclamationCircleFilled />,
-          content: "确定退出系统?",
-          okText: "确定",
-          cancelText: "取消",
-          onOk() {
-            sessionStorage.clear();
-            navigate("/login");
-          },
-        });
-        break;
-    }
-  };
+    navigate(key);
+  }
+
+const selectedKeys = location.pathname;
 
   return (
-    <AntLayout className="layout">
+    <AntLayout id="AntLayoutPage">
       <Header
         className="header"
         style={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <div className="demo-logo">月兔API</div>
@@ -109,14 +107,14 @@ const AdminLayout: React.FC = () => {
           className="menu"
           //   theme="dark"
           mode="horizontal"
-          selectedKeys={[selectkey]}
+          selectedKeys={[selectedKeys]}
           // defaultSelectedKeys={["2"]}
-          items={items1}
+          items={topItems}
           style={{
             // flex: 1,
             minWidth: 0,
           }}
-          onClick={onClick}
+          onClick={onSetting}
         />
       </Header>
       <AntLayout>
@@ -128,10 +126,10 @@ const AdminLayout: React.FC = () => {
         >
           <Menu
             mode="inline"
-            selectedKeys={[selectkey]}
+            selectedKeys={[selectedKeys]}
             // defaultOpenKeys={["sub1"]}
             style={{
-              height: "100%",
+              height: '100%',
               borderRight: 0,
             }}
             items={items2}
@@ -140,12 +138,12 @@ const AdminLayout: React.FC = () => {
         </Sider>
         <AntLayout
           style={{
-            padding: "0 24px 24px",
+            padding: '0 24px 24px',
           }}
         >
           <Breadcrumb
             style={{
-              margin: "16px 0",
+              margin: '16px 0',
             }}
             // items={[{ title: "Home" }, { title: "List" }, { title: "App" }]}
           ></Breadcrumb>

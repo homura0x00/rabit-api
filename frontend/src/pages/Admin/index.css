@@ -1,6 +1,6 @@
-.layout {
-  width: 100vw;
-  height: 100vh;
+#AntLayoutPage {
+  min-width: 1024px;
+  min-height: 100vh;
   display: flex;
   background-color: #fff;
   .header {
