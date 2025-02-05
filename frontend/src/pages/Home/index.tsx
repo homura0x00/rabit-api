@@ -1,8 +1,7 @@
-import BasicLayout from '../../components/BasicLayout/index.tsx';
+import BasicLayout from '../../components/BasicLayout';
 import React from 'react';
 
 const Welcome: React.FC = () => {
-
   return (
     <div id="app">
       <BasicLayout />

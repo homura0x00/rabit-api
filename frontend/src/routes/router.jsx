@@ -3,11 +3,11 @@ import ErrorPage from "../error-page.jsx";
 import Login from "../pages/Login/index.jsx";
 
 import Home from "../components/Home/index.jsx";
-import RoleList from "../pages/RoleList/index.jsx";
-import Layout from "../pages/Layout/index.jsx";
+import RoleList from "../pages/User/RoleList/index.jsx";
+import Layout from "../pages/User/Layout/index.jsx";
 import AdminLayout from "../pages/Admin/index.tsx";
 import AdminInterfaceInfo from "../pages/Admin/InterfaceInfo/index.tsx";
-import Welcome from "../pages/Index/index.tsx";
+import Welcome from "../pages/Home/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/layout",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -49,6 +51,9 @@ const router = createBrowserRouter([
         path: "/admin/interfaceinfo",
         element: <AdminInterfaceInfo />,
       },
+      {
+        path: "/admin/"
+      }
     ],
   },
 ]);

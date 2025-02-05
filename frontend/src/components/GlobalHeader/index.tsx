@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { Header } from 'antd/es/layout/layout';
+import LogoView from '../Logo';
 
 const GlobalHeader: React.FC = () => {
   // 顶部导航栏
@@ -22,7 +23,7 @@ const GlobalHeader: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <div className="demo-logo" />
+        <LogoView />
         <Menu
           theme="dark"
           mode="horizontal"

@@ -64,9 +64,9 @@ const App = () => {
   const [selectkey, Setselectkey] = useState("home");
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/");
-    }
+    // if (!localStorage.getItem("token")) {
+    //   navigate("/");
+    // }
   }, []);
 
   const onClick = ({ key }) => {

@@ -1,20 +1,9 @@
-import { Layout, Menu, theme } from 'antd';
+import { Layout } from 'antd';
 import './index.css';
 import GlobalHeader from '../GlobalHeader';
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 
-// 顶部导航栏
-const items = [
-  {
-    key: 'home',
-    label: 'Home',
-  },
-  {
-    key: 'about',
-    label: 'About',
-  }
-];
 const Welcome = () => {
   return (
     <Layout id="WelcomePage" style={{ minHeight: '100vh' }}>
@@ -43,7 +32,7 @@ const Welcome = () => {
           textAlign: 'center',
         }}
       >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        月兔API ©{new Date().getFullYear()} Created by rabitIII
       </Footer>
     </Layout>
   );

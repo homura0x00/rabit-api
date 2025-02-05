@@ -13,6 +13,7 @@ import { Breadcrumb, Layout as AntLayout, Menu, theme, MenuProps, Modal } from "
 import React from "react";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import LogoView from "../../components/Logo";
 const { Header, Content, Sider } = AntLayout;
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -100,9 +101,10 @@ const selectedKeys = location.pathname;
         style={{
           display: 'flex',
           alignItems: 'center',
+          border: 0,
         }}
       >
-        <div className="demo-logo">月兔API</div>
+        <LogoView />
         <Menu
           className="menu"
           //   theme="dark"
@@ -111,8 +113,9 @@ const selectedKeys = location.pathname;
           // defaultSelectedKeys={["2"]}
           items={topItems}
           style={{
-            // flex: 1,
+            right: 0,
             minWidth: 0,
+            border: 0,
           }}
           onClick={onSetting}
         />
