@@ -7,6 +7,7 @@ import RoleList from "../pages/User/RoleList/index.jsx";
 import Layout from "../pages/User/Layout/index.jsx";
 import AdminLayout from "../pages/Admin/index.tsx";
 import AdminInterfaceInfo from "../pages/Admin/InterfaceInfo/index.tsx";
+import AdminUserInfo from "../pages/Admin/UserInfo";
 import Welcome from "../pages/Home/index.tsx";
 
 const router = createBrowserRouter([
@@ -52,7 +53,8 @@ const router = createBrowserRouter([
         element: <AdminInterfaceInfo />,
       },
       {
-        path: "/admin/"
+        path: "/admin/userInfo",
+        element: <AdminUserInfo />
       }
     ],
   },
