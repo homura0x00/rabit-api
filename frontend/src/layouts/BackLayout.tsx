@@ -62,7 +62,7 @@ const items2: MenuItem[] = [
     icon: <UserOutlined />,
   },
 ];
-const AdminLayout: React.FC = () => {
+const BackLayout: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -166,4 +166,4 @@ const selectedKeys = location.pathname;
     </AntLayout>
   );
 };
-export default AdminLayout;
+export default BackLayout;

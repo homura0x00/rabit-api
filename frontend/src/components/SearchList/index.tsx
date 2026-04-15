@@ -8,7 +8,7 @@ const AdvancedSearchForm = () => {
   const [form] = Form.useForm();
   const [expand, setExpand] = useState(false);
 
-  const onFinish = (values) => {
+  const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
   };
   return (
