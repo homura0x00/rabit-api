@@ -2,13 +2,13 @@ package list
 
 import (
 	"backend-go/global"
-	"backend-go/internal/models"
 	"fmt"
+
 	"gorm.io/gorm"
 )
 
 type Option struct {
-	models.Pagination
+	model.Pagination
 	Likes   []string // 模糊查询对应的列名
 	Debug   bool     // 是否开启原生sql（打印sql语句）
 	Where   *gorm.DB

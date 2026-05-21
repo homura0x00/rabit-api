@@ -1,19 +1,12 @@
 package test
 
 import (
-	"backend-go/core"
-	"backend-go/global"
 	jwts2 "backend-go/internal/utils/jwts"
 	"fmt"
 	"os"
 )
 
 func main() {
-
-	// 日志
-	global.Log = core.InitLogger()
-	// gin环境配置
-	global.Config = core.InitConfig()
 	s, err := jwts2.GenToken(jwts2.JwyPayLoad{
 		NickName: "fengfeng",
 	})

@@ -1,28 +1,45 @@
 package utils
 
-type ErrorCode struct {
-	Code    int    `json:"code"`
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+type Code int
+
+// Response is the standard API envelope.
+type Response struct {
+	Success bool       `json:"success"`
+	Data    any        `json:"data,omitempty"`
+	Error   *ErrorInfo `json:"error,omitempty"`
+	Meta    *Meta      `json:"meta,omitempty"`
+}
+
+type ErrorInfo struct {
+	Code    string `json:"code"`
 	Message string `json:"message"`
 }
 
-type Response struct {
-	Message     string      `json:"message"`
-	Code        int         `json:"code"`
-	Data        interface{} `json:"data"`
-	Description *string     `json:"description"`
+type Meta struct {
+	Page      int `json:"page,omitempty"`
+	PerPage   int `json:"per_page,omitempty"`
+	Total     int `json:"total,omitempty"`
+	TotalPage int `json:"total_page,omitempty"`
 }
 
-func ResponseOK(data interface{}, description ...string) *Response {
-	var des *string
-	if len(description) > 0 {
-		des = &description[0]
-	} else {
-		des = nil
-	}
-	return &Response{
-		Message:     "ok",
-		Code:        0,
-		Data:        data,
-		Description: des,
-	}
+// OK sends a success response.
+func OK(c *gin.Context, data any) {
+	c.JSON(http.StatusOK, Response{
+		Success: true,
+		Data:    data,
+	})
+}
+
+// Fail sends an error response.
+func Fail(c *gin.Context, statue int, code, msg string) {
+	c.JSON(statue, Response{
+		Success: false,
+		Error:   &ErrorInfo{Code: code, Message: msg},
+	})
 }
