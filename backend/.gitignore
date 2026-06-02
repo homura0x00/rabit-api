@@ -12,4 +12,4 @@ logs
 *.sw?
 /.idea/
 
-*dev.yaml
+*.yaml
